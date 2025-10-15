@@ -1,0 +1,6 @@
+@LapTrinhDiDong_api_HostAddress = http://localhost:5101
+
+GET {{LapTrinhDiDong_api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
