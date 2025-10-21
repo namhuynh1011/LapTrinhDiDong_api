@@ -56,7 +56,7 @@ namespace LapTrinhDiDong_api.Controllers
 
       bool isPasswordValid = BCrypt.Net.BCrypt.Verify(model.Password, user.Password);
       if (!isPasswordValid)
-        return Unauthorized(new { message = "Sai mật khẩu!" });
+        return Unauthorized(new { message = "Tài Khoản Không Tồn Tại Hoặc Sai mật khẩu!" });
 
       // Sinh token
       var token = JwtHelper.GenerateJwtToken(user, _config);
@@ -67,8 +67,9 @@ namespace LapTrinhDiDong_api.Controllers
         user = new
         {
           id = user.Id,
-          fullname = user.FullName,
+          fullName = user.FullName,
           email = user.Email,
+          phone = user.Phone,
           role = user.Role
         }
       });

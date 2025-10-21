@@ -18,7 +18,7 @@ namespace LapTrinhDiDong_api.Repositories
 
     public async Task<IEnumerable<User>> GetAllUsersAsync()
     {
-      return await _context.Users.ToListAsync();
+      return await _context.Users.Where(u => u.Role != 0).ToListAsync();
     }
 
     public async Task<User> GetUserByEmailAsync(string email)

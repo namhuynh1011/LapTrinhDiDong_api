@@ -51,7 +51,16 @@ namespace LapTrinhDiDong_api.Controllers
         public async Task<ActionResult<IEnumerable<User>>> GetAllUsers()
         {
             var users = await _userRepository.GetAllUsersAsync();
-            return Ok(users);
+            var dtos = users.Select(u => new UserDto
+            {
+                Id = u.Id,
+                FullName = u.FullName,
+                Email = u.Email,
+                Phone = u.Phone,
+                Role = u.Role
+            }).ToList();
+
+            return Ok(dtos);
         }
 
         [HttpDelete("{id}")]
@@ -69,11 +78,11 @@ namespace LapTrinhDiDong_api.Controllers
         [HttpPut("update-user/{id}")]
         public async Task<ActionResult<User>> UpdateUser(Guid id, [FromBody] UpdateUserRequest user)
         {
-            if (user == null )
+            if (user == null)
             {
                 return BadRequest("Dữ liệu không hợp lệ");
             }
-            
+
 
             var existingUser = await _userRepository.GetUserByIdAsync(id);
             if (existingUser == null)
@@ -151,6 +160,36 @@ namespace LapTrinhDiDong_api.Controllers
             {
                 return StatusCode(500, new { message = "Đã xảy ra lỗi hệ thống, vui lòng thử lại sau." });
             }
+        }
+
+        [HttpGet("me")]
+        [Authorize]
+        public async Task<ActionResult<User>> GetCurrentUser()
+        {
+            var userIdCaim = User.FindFirst("sub") ?? User.FindFirst("id");
+            if (userIdCaim == null)
+            {
+                return Unauthorized();
+            }
+            if (!Guid.TryParse(userIdCaim.Value, out var userId))
+            {
+                return Unauthorized();
+            }
+
+            var user = await _userRepository.GetUserByIdAsync(userId);
+            if (user == null)
+                return NotFound();
+
+            return Ok(new
+            {
+                user.Id,
+                user.FullName,
+                user.Email,
+                user.Phone,
+                user.Address,
+                user.BirthDay,
+
+            });
         }
     }
 }

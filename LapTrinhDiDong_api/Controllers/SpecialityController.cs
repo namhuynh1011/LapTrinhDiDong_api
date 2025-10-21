@@ -37,7 +37,7 @@ namespace LapTrinhDiDong_api.Controllers
     }
 
     [HttpPost]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public async Task<ActionResult<Speciality>> CreateSpeciality([FromBody] Speciality speciality)
     {
       if (speciality == null || string.IsNullOrWhiteSpace(speciality.Name))

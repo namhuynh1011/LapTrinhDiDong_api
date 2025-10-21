@@ -20,8 +20,9 @@ namespace LapTrinhDiDong_api.Utils
       {
             new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
             new Claim("id", user.Id.ToString()),
-            new Claim("fullname", user.FullName ?? ""),
+            new Claim("fullName", user.FullName ?? ""),
             new Claim("email", user.Email),
+            new Claim("phone", user.Phone ?? ""),
             new Claim("role", user.Role.ToString())
         };
 

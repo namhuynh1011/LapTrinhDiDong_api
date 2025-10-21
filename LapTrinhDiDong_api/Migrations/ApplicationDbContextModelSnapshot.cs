@@ -28,6 +28,10 @@ namespace LapTrinhDiDong_api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("IconKey")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -48,8 +52,8 @@ namespace LapTrinhDiDong_api.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<int?>("BirthYear")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("BirthDay")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");

@@ -11,5 +11,7 @@ namespace LapTrinhDiDong_api.Models
     [Required]
     [MaxLength(200)]
     public string Name { get; set; }
+
+    public string IconKey { get; set; }
   }
 }

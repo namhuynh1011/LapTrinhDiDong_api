@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LapTrinhDiDong_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251012114303_CreateSpeciality")]
-    partial class CreateSpeciality
+    [Migration("20251015112150_SpecialityTable")]
+    partial class SpecialityTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,6 +30,10 @@ namespace LapTrinhDiDong_api.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
+
+                    b.Property<string>("IconKey")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -51,8 +55,8 @@ namespace LapTrinhDiDong_api.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<int?>("BirthYear")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("BirthDay")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");

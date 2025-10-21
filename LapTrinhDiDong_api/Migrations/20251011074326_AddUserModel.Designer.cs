@@ -35,8 +35,8 @@ namespace LapTrinhDiDong_api.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
-                    b.Property<int?>("BirthYear")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("BirthDay")
+                        .HasColumnType("datetime");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
