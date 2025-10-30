@@ -6,15 +6,14 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LapTrinhDiDong_api.Migrations
 {
     /// <inheritdoc />
-    public partial class SpecialityTable : Migration
+    public partial class specialtable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            
 
             migrationBuilder.CreateTable(
-                name: "Specialities",
+                name: "Specialties",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -25,7 +24,7 @@ namespace LapTrinhDiDong_api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Specialities", x => x.Id);
+                    table.PrimaryKey("PK_Specialties", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
         }
@@ -34,7 +33,8 @@ namespace LapTrinhDiDong_api.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Specialities");
+                name: "Specialties");
+
         }
     }
 }

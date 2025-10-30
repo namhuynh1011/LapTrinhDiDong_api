@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LapTrinhDiDong_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251015112150_SpecialityTable")]
-    partial class SpecialityTable
+    [Migration("20251029073039_specialtable")]
+    partial class specialtable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace LapTrinhDiDong_api.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("LapTrinhDiDong_api.Models.Speciality", b =>
+            modelBuilder.Entity("LapTrinhDiDong_api.Models.Specialty", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -42,7 +42,7 @@ namespace LapTrinhDiDong_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Specialities");
+                    b.ToTable("Specialties");
                 });
 
             modelBuilder.Entity("LapTrinhDiDong_api.Models.User", b =>

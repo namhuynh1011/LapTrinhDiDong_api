@@ -36,8 +36,8 @@ builder.Services.AddSwaggerGen();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 // Đăng ký các repository
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<ISpecialityRepository, SpecialityRepository>();
-
+builder.Services.AddScoped<ISpecialtyRepository, SpecialtyRepository>();
+builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

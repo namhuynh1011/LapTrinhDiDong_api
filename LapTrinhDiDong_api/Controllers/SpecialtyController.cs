@@ -9,20 +9,20 @@ namespace LapTrinhDiDong_api.Controllers
   [Route("api/[controller]")]
   public class SpecialityController : ControllerBase
   {
-    private readonly ISpecialityRepository _specialityRepository;
+    private readonly ISpecialtyRepository _specialityRepository;
 
-    public SpecialityController(ISpecialityRepository specialityRepository)
+    public SpecialityController(ISpecialtyRepository specialityRepository)
     {
       _specialityRepository = specialityRepository;
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Speciality>> GetSpecialityById(Guid id)
+    public async Task<ActionResult<Specialty>> GetSpecialityById(Guid id)
     {
       if (id == Guid.Empty)
         return BadRequest("ID không hợp lệ");
 
-      var speciality = await _specialityRepository.GetSpecialityByIdAsync(id);
+      var speciality = await _specialityRepository.GetSpecialtyByIdAsync(id);
       if (speciality == null)
         return NotFound();
 
@@ -30,34 +30,34 @@ namespace LapTrinhDiDong_api.Controllers
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Speciality>>> GetAllSpecialities()
+    public async Task<ActionResult<IEnumerable<Specialty>>> GetAllSpecialities()
     {
-      var result = await _specialityRepository.GetAllSpecialitiesAsync();
+      var result = await _specialityRepository.GetAllSpecialtiesAsync();
       return Ok(result);
     }
 
     [HttpPost]
     // [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<Speciality>> CreateSpeciality([FromBody] Speciality speciality)
+    public async Task<ActionResult<Specialty>> CreateSpeciality([FromBody] Specialty specialty)
     {
-      if (speciality == null || string.IsNullOrWhiteSpace(speciality.Name))
+      if (specialty == null || string.IsNullOrWhiteSpace(specialty.Name))
         return BadRequest("Dữ liệu không hợp lệ");
 
-      var created = await _specialityRepository.CreateSpecialityAsync(speciality);
+      var created = await _specialityRepository.CreateSpecialtyAsync(specialty);
       return CreatedAtAction(nameof(GetSpecialityById), new { id = created.Id }, created);
     }
 
     [HttpPut("{id}")]
     [Authorize(Roles = "Admin")]
-    public async Task<ActionResult<Speciality>> UpdateSpeciality(Guid id, [FromBody] Speciality speciality)
+    public async Task<ActionResult<Specialty>> UpdateSpeciality(Guid id, [FromBody] Specialty specialty)
     {
-      if (id == Guid.Empty || speciality == null || speciality.Id == Guid.Empty || string.IsNullOrWhiteSpace(speciality.Name))
+      if (id == Guid.Empty || specialty == null || specialty.Id == Guid.Empty || string.IsNullOrWhiteSpace(specialty.Name))
         return BadRequest("Dữ liệu không hợp lệ");
 
-      if (id != speciality.Id)
+      if (id != specialty.Id)
         return BadRequest("Id mismatch!");
 
-      var updated = await _specialityRepository.UpdateSpecialityAsync(speciality);
+      var updated = await _specialityRepository.UpdateSpecialtyAsync(id,specialty);
       return Ok(updated);
     }
 
@@ -67,7 +67,7 @@ namespace LapTrinhDiDong_api.Controllers
       if (id == Guid.Empty)
         return BadRequest("ID không hợp lệ");
 
-      await _specialityRepository.DeleteSpecialityAsync(id);
+      await _specialityRepository.DeleteSpecialtyAsync(id);
       return NoContent();
     }
   }

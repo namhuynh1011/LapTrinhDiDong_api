@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LapTrinhDiDong_api.Models
 {
-  public class Speciality
+  public class Specialty
   {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
